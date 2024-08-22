@@ -1,1 +1,3 @@
 Pods/MediaPipeTasksCommon/frameworks/graph_libraries/libMediaPipeTasksCommon_device_graph.a
+FaceLandmarker/Nemo.mp4
+Pods/MediaPipeTasksCommon/frameworks/graph_libraries/libMediaPipeTasksCommon_simulator_graph.a
