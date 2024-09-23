@@ -53,6 +53,8 @@ class RootViewController: UIViewController {
     @IBOutlet weak var runningModeTabbar: UITabBar!
     @IBOutlet weak var bottomSheetViewBottomSpace: NSLayoutConstraint!
     @IBOutlet weak var bottomViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var saveButton: UIButton!
+    
     weak var delegate: RootViewControllerDelegate?
     
     // MARK: Constants
@@ -277,6 +279,12 @@ class RootViewController: UIViewController {
         DispatchQueue.global(qos: .background).async {
             self.startCaptureSession()
         }
+        
+        if let saveButton = saveButton {
+            view.bringSubviewToFront(saveButton)
+        } else {
+            print("Save button is nil")
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -357,7 +365,10 @@ class RootViewController: UIViewController {
     
     private func loadAndPlayYouTubeVideo() {
             // Initialize and configure the web view
-            webView = WKWebView(frame: view.bounds)
+            let webViewHeight = view.bounds.height * 0.83 // Occupy bottom 70% of the screen
+            let webViewY = view.bounds.height - webViewHeight
+            
+            webView = WKWebView(frame: CGRect(x: 0, y: webViewY, width: view.bounds.width, height: webViewHeight))
             webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             view.addSubview(webView)
             
