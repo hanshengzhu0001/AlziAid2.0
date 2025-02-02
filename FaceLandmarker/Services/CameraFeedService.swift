@@ -201,8 +201,9 @@ class CameraFeedService: NSObject {
             self.requestCameraAccess(completion: { (granted) in
                 self.sessionQueue.resume()
             })
-        case .denied:
+        case .denied, .restricted:
             self.cameraConfigurationStatus = .permissionDenied
+            print("Camera permission denied")
         default:
             break
         }
